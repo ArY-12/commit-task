@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Get the last commit message
+commit_msg=$(git log -1 --pretty=%B)
+
+# Define regex pattern: must start with ISSUE- or STORY-
+if [[ ! "$commit_msg" =~ ^(ISSUE|STORY)-[0-9]+ ]]; then
+  echo "❌ Push rejected: Commit message must start with ISSUE-<id> or STORY-<id>"
+  exit 1
+fi
+
